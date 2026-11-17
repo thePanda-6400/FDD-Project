@@ -1,0 +1,29 @@
+# ---- Data: NOT redistributed here ----
+# The dataset belongs to the AAU Subsea Research Lab and is published at
+# https://github.com/Subsea-Research-Lab-AAU/Incipient-Propeller-Fault-Data
+Incipient-Propeller-Fault-Data/
+Data_19_01_23_force/
+*.mat
+*.zip
+
+# ---- Generated outputs (reproducible from the scripts) ----
+*.csv
+*.png
+eda_out/
+stage1_out/
+stage1b_out/
+stage1_final/
+stage2_out/
+kf_out/
+feat_out/
+
+# ---- Python ----
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.venv/
+venv/
+env/
+
+# ---- macOS ----
+.DS_Store

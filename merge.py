@@ -1,25 +1,5 @@
 #!/usr/bin/env python3
-"""
-Stage 2, step 1: merge the electrical dataset with the force measurements.
 
-Electrical : Propeller_fault_data.mat
-             CV/CCV -> <run> -> in110..in190 -> MeasCurrA/B/C, MeasVoltA/B/C, time
-             125000 samples @ ~312.5 kHz (a 0.4 s window at a fixed throttle)
-Force      : Data_19_01_23_force/<CV0|CCV3|...>/StairThruster<dir><prop>_<k>.mat
-             MeasForce, MeasPWM, seqThrottle, seqTime, tout
-             2400 samples @ ~100 Hz over 24 s at ONE throttle
-
-JOIN KEY   : seqThrottle (110..190) <-> in110..in190.
-             Read from inside the file, NOT from the _<k> filename order.
-
-Both sides are steady-state at the same operating point, so their means are
-comparable even though the windows differ in length.
-
-Output: merged.csv, one row per (direction, propeller, throttle), with
-        thrust, electrical power, current RMS, shaft speed and efficiency.
-
-Run: python merge_force.py
-"""
 import os, re, glob, warnings
 import numpy as np
 import pandas as pd

@@ -1,18 +1,5 @@
 #!/usr/bin/env python3
-"""
-Stage 3: fault-tolerant thrust allocation for BlueROV2 Heavy.
 
-Uses bluerov2_gym for dynamics if installed; otherwise falls back to a simple
-decoupled 6-DOF integrator so the controller/allocator logic runs anywhere.
-
-Compares two allocators under an injected thruster fault:
-  - baseline pseudo-inverse (ignores the fault)
-  - FTC "derate-to-weakest": scales commands by per-thruster effectiveness and
-    caps the group to the weakest healthy capacity, preserving balance.
-The per-thruster effectiveness vector is what Stage 1 detection supplies.
-
-Run: python stage3.py   (pip install numpy scipy matplotlib; bluerov2_gym optional)
-"""
 import numpy as np
 import matplotlib; matplotlib.use("Agg"); import matplotlib.pyplot as plt
 

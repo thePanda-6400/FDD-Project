@@ -1,12 +1,5 @@
 #!/usr/bin/env python3
-"""
-Stage 1b upgrade. Fixes the weak-signal result by:
-  (1) locating 'force' ANYWHERE in the .mat tree -> efficiency if found
-  (2) adding rotational-speed mean + VARIANCE (paper's strongest cue) via
-      fundamental-frequency tracking in sliding sub-windows
-  (3) reporting new-vs-worn AUC PER INPUT LEVEL (effect is input-specific)
-Run: python stage1b.py
-"""
+
 import os, warnings, numpy as np, pandas as pd
 MAT_PATH, OUT, FS = "Propeller_fault_data.mat", "stage1b_out", 312497.5
 NEW = {"CV":{0,10,11}, "CCV":{0,6,7}}

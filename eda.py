@@ -1,17 +1,4 @@
 #!/usr/bin/env python3
-"""
-Exploratory Data Analysis for the AAU incipient propeller-fault dataset
-(Propeller_fault_data.mat): groups CCV and CV, each a struct of numbered runs
-plus 'omega'. Signal fields may be nested inside sub-structs, so this version
-DISCOVERS them recursively and never assumes a field is a flat numeric vector.
-
-Run:
-    conda activate rov-fdd
-    python eda.py
-
-Then paste back the printed "STRUCTURE OF FIRST RUN" and "OMEGA" trees plus the
-"WHAT TO TELL CLAUDE" block so the signals, sampling rate, and labels can be fixed.
-"""
 
 import os
 import sys

@@ -1,35 +1,4 @@
 #!/usr/bin/env python3
-"""
-Stage 2: propeller coefficients, Kalman parameter estimation, and
-electrical-only thrust estimation.   (clean consolidated version)
-
-Physics (static tank -> bollard condition, advance ratio J ~ 0, so K_T and K_Q
-are CONSTANT per propeller; that is what makes this parameter estimation rather
-than curve fitting):
-
-    T = K_T * rho * n^2 * D^4          n = shaft speed [rev/s], D = diameter [m]
-    Q = K_Q * rho * n^2 * D^5          Q = shaft torque [Nm]
-
-Torque is not measured; it is inferred from power and speed:
-    Q = P / (2*pi*n)        (same relation as Q = 9549 * P[kW] / RPM)
-P is ELECTRICAL power, so Q is inflated by motor/ESC losses. ETA_MOTOR stands in
-for that, which leaves K_Q on a RELATIVE scale, not absolute.
-
-Known data quirks handled here:
-  - throttle is stored in microseconds (1100..1900); 1500 = stopped
-  - at 1500 there is no rotation, so the current FFT locks onto noise -> excluded
-  - measured power is negative (probe polarity); magnitude is correct -> abs()
-
-Parts
-  1. per-point coefficients
-  2. Kalman estimate of K_T, K_Q per propeller (with uncertainty)
-  3. KF-reconstructed thrust vs measured (consistency check, NOT independent)
-  4. ELECTRICAL-ONLY thrust estimation, leave-one-propeller-out   <- headline
-  5. degradation index = 1 - K_T relative to the new-propeller baseline
-
-Input : merged.csv       Output: stage2_*.csv + 3 figures
-Run   : python stage2.py
-"""
 import numpy as np, pandas as pd
 import matplotlib; matplotlib.use("Agg")
 import matplotlib.pyplot as plt

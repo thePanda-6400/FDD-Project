@@ -1,9 +1,4 @@
-#!/usr/bin/env python3
-"""
-Stage 1 (hardened): robust, interpretable new-vs-worn detection + severity.
-Everything is leave-one-propeller-out (LOPO) so no propeller is in both
-train and test. Outputs metrics + 3 plots for the write-up.
-"""
+
 import os, warnings, numpy as np, pandas as pd
 MAT_PATH, OUT, FS = "Propeller_fault_data.mat", "stage1_final", 312497.5
 NEW={"CV":{0,10,11},"CCV":{0,6,7}}
